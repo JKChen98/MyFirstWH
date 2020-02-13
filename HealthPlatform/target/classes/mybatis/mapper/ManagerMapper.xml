@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 使用xml文件形式 -->
+<!-- 或者直接在映射接口使用注解形式 -->
+<!-- 管理员登录注册模块 -->
+<mapper namespace="nuc.edu.cn.cx.dao.ManagerDao" >
+	
+	<!-- 管理员添加 -->
+	<insert id="addManager" parameterType="Manager">
+		insert into manager(id,job_number,pwd)
+		values(seq_manager.nextval,#{job_number},#{pwd}) 
+	</insert>
+	
+	<!-- 管理员删除 -->
+	<delete id="deleteManager" parameterType="int">
+		delete from manager
+		where id=#{id}
+	</delete>
+	
+	<!-- 管理员修改密码 -->
+	<update id="modifyManager" parameterType="int">
+		update manager
+		set pwd=#{pwd}
+		where id=#{id}
+	</update>
+	
+	<!-- 管理员登录时使用 -->
+	<select id="selectManager" parameterType="Manager" resultType="Manager">
+		select *
+		from manager
+		where job_number=#{job_number} and pwd=#{pwd}
+	</select>
+</mapper>

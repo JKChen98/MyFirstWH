@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 使用xml文件形式 -->
+<!-- 或者直接在映射接口使用注解形式 -->
+<!-- 用户注册模块 -->
+<mapper namespace="nuc.edu.cn.cx.dao.FoodDao" >
+	
+	<resultMap type="Food" id="FoodMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="type" property="type"/>
+		<result column="protein" property="protein"/>
+		<result column="carbohydrate" property="carbohydrate"/>
+		<result column="fat" property="fat"/>
+		<result column="fiber" property="fiber"/>
+		<result column="heat" property="heat"/>
+	</resultMap>
+	
+	<!-- 按类型查找食物 -->
+	<select id="findFoodByType" parameterType="int" resultMap="FoodMap">
+		select * from food
+		where type=#{type}
+	</select>
+	
+	<!-- 按ID查找食物 -->
+	<select id="findFoodById" parameterType="int" resultType="Food">
+		select * from food
+		where id=#{id}
+	</select>
+	
+	<!-- 查找所有食物 -->
+	<select id="findFood" resultMap="FoodMap">
+		select *
+		from food
+	</select>
+</mapper>

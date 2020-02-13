@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 体检记录模块 -->
+<mapper namespace="nuc.edu.cn.cx.dao.ExamDao" >
+
+	<resultMap type="Exam" id="ExamMap">
+		<id column="id" property="id"/>
+		<result column="datetime" property="datetime"/>
+		<result column="dp" property="dp"/>
+		<result column="sp" property="sp"/>
+		<result column="bmi" property="bmi"/>
+		<result column="whr" property="whr"/>
+		<result column="ua" property="ua"/>
+		<result column="crea" property="crea"/>
+		<result column="tg" property="tg"/>
+		<result column="chol" property="chol"/>
+		<result column="bun" property="bun"/>
+		<result column="hdl" property="hdl"/>
+		<result column="ldl" property="ldl"/>
+		<result column="glu" property="glu"/>
+		<result column="hcy" property="hcy"/>
+		<result column="m_alb" property="m_alb"/>
+		<result column="m_alb_crea" property="m_alb_crea"/>
+		<result column="user_id" property="user.id"/>
+	</resultMap>
+	
+	<insert id="addExam" parameterType="Exam">
+		insert into ExamRecord
+		values(#{id},#{datetime},#{dp},#{sp},#{bmi},#{whr},#{ua},#{crea},#{tg},#{chol},#{bun},#{hdl},#{ldl},#{glu},#{hcy},#{m_alb},#{m_alb_crea},#{user.id})
+	</insert>
+	
+	<select id="findExam" resultMap="ExamMap" parameterType="int">
+		select *
+		from ExamRecord
+		where user_id=#{id}
+		order by datetime desc
+	</select>
+	
+	<select id="findSomeRecords" resultMap="ExamMap" parameterType="int">
+		select dp,sp,bmi,datetime
+		from ExamRecord
+		where user_id=#{id}
+		order by datetime 
+	</select>
+</mapper>

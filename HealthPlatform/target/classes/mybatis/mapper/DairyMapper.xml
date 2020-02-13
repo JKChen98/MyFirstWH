@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 健康日记模块 -->
+<mapper namespace="nuc.edu.cn.cx.dao.DairyDao" >
+	<insert id="addDairy" parameterType="Dairy">
+		insert into dairy(date_add,text,sleeptime,mood,weight,pressure,BpHigh,BpLow,Glu,Bf,heart,user_id)
+		values(#{date_add},#{text},#{sleeptime},#{mood},#{weight},#{pressure},#{BpHigh},#{BpLow},#{Glu},#{Bf},#{heart},#{user.id})
+	</insert>
+	
+	<select id="findDairy" resultType="Dairy">
+		select *
+		from dairy
+		where date_add=#{date_add} and user_id=#{user.id}
+	</select>
+</mapper>
